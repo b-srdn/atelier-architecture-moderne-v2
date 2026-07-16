@@ -55,7 +55,7 @@ export default async function PageProjet({ params }: Props) {
             </Link>{" "}
             / PL. {projet.numero}
           </p>
-          <h1 className="affiche mt-7 max-w-5xl text-3xl sm:text-4xl md:text-6xl">
+          <h1 className="affiche mt-7 max-w-5xl text-[clamp(1.5rem,7.3vw,3.75rem)] lg:text-6xl">
             {projet.titre}
           </h1>
 

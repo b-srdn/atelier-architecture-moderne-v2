@@ -43,7 +43,7 @@ function Heros() {
         </p>
       </div>
 
-      <h1 className="affiche mt-8 text-[clamp(2.7rem,9.4vw,8.75rem)]">
+      <h1 className="affiche mt-8 text-[clamp(2.05rem,10.4vw,8.75rem)]">
         <span className="block overflow-hidden">
           <span
             className="leve block"
@@ -160,7 +160,7 @@ function Nomenclature() {
       <div className="grid gap-14 lg:grid-cols-12">
         <Apparition className="lg:col-span-4">
           <p className="etiquette text-ocre-fonce">Nomenclature</p>
-          <h2 className="affiche mt-5 text-3xl md:text-[2.6rem]">
+          <h2 className="affiche mt-5 text-[clamp(1.6rem,8vw,1.875rem)] md:text-[2.6rem]">
             Quatre manières d’intervenir
           </h2>
           <p className="mt-7 max-w-xs text-sm leading-relaxed text-brume">
@@ -328,7 +328,7 @@ function Appel() {
         <Apparition className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="etiquette">Nouveau projet</p>
-            <h2 className="affiche mt-5 text-4xl md:text-6xl">
+            <h2 className="affiche mt-5 text-[clamp(1.9rem,9.5vw,2.25rem)] md:text-6xl">
               Un projet ?<br />
               Parlons-en.
             </h2>

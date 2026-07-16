@@ -16,7 +16,9 @@ export default function PageProjets() {
       <section className="rail pt-14 pb-6 md:pt-24">
         <Apparition>
           <p className="etiquette text-ocre-fonce">Le classeur</p>
-          <h1 className="affiche mt-6 text-5xl md:text-8xl">Réalisations</h1>
+          <h1 className="affiche mt-6 text-[clamp(1.7rem,8.8vw,6rem)]">
+            Réalisations
+          </h1>
           <p className="etiquette mt-7 text-brume">
             {PROJETS.length} planches — Dijon & Côte-d’Or
           </p>

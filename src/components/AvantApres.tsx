@@ -79,7 +79,7 @@ export function AvantApres({ avant, apres }: { avant: Photo; apres: Photo }) {
         value={pct}
         onChange={(e) => setPct(Number(e.target.value))}
         aria-label="Comparer l’avant et l’après de la reconstruction"
-        className="absolute inset-0 h-full w-full cursor-ew-resize appearance-none bg-transparent opacity-0"
+        className="absolute inset-0 h-full w-full cursor-ew-resize touch-pan-y appearance-none bg-transparent opacity-0"
       />
     </div>
   );

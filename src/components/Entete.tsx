@@ -51,7 +51,7 @@ export function Entete() {
           ))}
           <a
             href={`tel:${AGENCE.telephoneUri}`}
-            className="etiquette border border-encre/60 px-3.5 py-2.5 transition-colors duration-300 hover:bg-encre hover:text-chaux"
+            className="etiquette border border-encre/60 px-3.5 py-2.5 whitespace-nowrap transition-colors duration-300 hover:bg-encre hover:text-chaux"
           >
             {AGENCE.telephone}
           </a>
@@ -75,7 +75,7 @@ export function Entete() {
 
       {/* Menu mobile plein écran */}
       <div
-        className={`fixed inset-0 z-40 bg-fusain text-chaux transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 overflow-y-auto bg-fusain text-chaux transition-opacity duration-300 md:hidden ${
           ouvert ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -86,7 +86,7 @@ export function Entete() {
                 <Link
                   href={lien.href}
                   onClick={() => setOuvert(false)}
-                  className={`affiche block text-[2.6rem] ${ouvert ? "leve" : "opacity-0"}`}
+                  className={`affiche block text-[clamp(1.7rem,8.8vw,2.25rem)] ${ouvert ? "leve" : "opacity-0"}`}
                   style={{ "--delai": `${140 + i * 90}ms` } as CSSProperties}
                 >
                   {lien.label}

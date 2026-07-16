@@ -29,10 +29,13 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-chaux font-sans text-encre antialiased;
+    /* Filet de sécurité mobile : rien ne doit créer de défilement horizontal. */
+    overflow-x: clip;
   }
 
   ::selection {

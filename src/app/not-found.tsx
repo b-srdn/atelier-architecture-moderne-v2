@@ -6,7 +6,9 @@ export default function PageIntrouvable() {
     <section className="rail flex min-h-[62vh] flex-col items-center justify-center gap-7 py-24 text-center">
       <Losange className="h-12 w-12" />
       <p className="etiquette text-ocre-fonce">Erreur 404</p>
-      <h1 className="affiche text-4xl md:text-6xl">Planche introuvable</h1>
+      <h1 className="affiche text-[clamp(1.9rem,9.5vw,2.25rem)] md:text-6xl">
+        Planche introuvable
+      </h1>
       <p className="text-sm text-brume">
         Cette feuille n’est pas dans le classeur.
       </p>

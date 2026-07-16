@@ -3,8 +3,9 @@
 import { useState, type FormEvent } from "react";
 import { AGENCE, INTERVENTIONS } from "@/lib/donnees";
 
+/* 16 px minimum : en dessous, iOS Safari zoome automatiquement sur le champ. */
 const CHAMP =
-  "w-full border border-liseret bg-transparent px-4 py-3 text-sm text-encre placeholder:text-brume/50 transition-colors focus:border-encre focus:outline-none";
+  "w-full rounded-none border border-liseret bg-transparent px-4 py-3 text-base text-encre placeholder:text-brume/50 transition-colors focus:border-encre focus:outline-none";
 
 /**
  * Formulaire sans back-end : il compose un e-mail prérempli dans la
@@ -71,7 +72,7 @@ export function Formulaire() {
 
       <label className="flex flex-col gap-2">
         <span className="etiquette text-brume">Nature du projet *</span>
-        <select name="nature" required className={`${CHAMP} appearance-none`}>
+        <select name="nature" required className={`${CHAMP} h-[3.05rem]`}>
           {INTERVENTIONS.map((it) => (
             <option key={it.nom} value={it.nom}>
               {it.nom}
