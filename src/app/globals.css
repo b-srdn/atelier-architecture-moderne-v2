@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * DA « La Trame » — le site est composé comme un plan d'architecte :
+ * une trame d'axes verticaux (A–E), des conventions de plan (hachures =
+ * existant, poché = neuf), un cartouche pour chaque planche projet.
+ * Palette matériaux : zinc, chaux, pierre de Bourgogne, ocre vernissé.
+ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-fragment), ui-monospace, "SF Mono", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-encre: #22262b; /* zinc profond — texte */
+  --color-fusain: #17191d; /* zinc nuit — bandeaux sombres */
+  --color-chaux: #f0efea; /* fond minéral clair */
+  --color-pierre: #ded8ca; /* pierre de Bourgogne */
+  --color-liseret: #c8c1b0; /* filets sur fond clair */
+  --color-ocre: #c2932a; /* tuile vernissée — accent */
+  --color-ocre-fonce: #8a6612; /* accent lisible sur chaux */
+  --color-brume: #545a62; /* texte secondaire sur clair */
+  --color-givre: #a9afb6; /* texte secondaire sur sombre */
+
+  --ease-plan: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-chaux font-sans text-encre antialiased;
+  }
+
+  ::selection {
+    background: var(--color-ocre);
+    color: var(--color-fusain);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ocre-fonce);
+    outline-offset: 3px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Conteneur unique du site : tout se cale sur la même trame. */
+  .rail {
+    @apply mx-auto w-full max-w-[84rem] px-6 md:px-10;
+  }
+
+  /* Titres display : Archivo étendu, à la manière d'une plaque gravée. */
+  .affiche {
+    font-stretch: 125%;
+    font-weight: 750;
+    text-transform: uppercase;
+    letter-spacing: -0.015em;
+    line-height: 0.94;
+    text-wrap: balance;
+  }
+
+  /* Chasse étroite : repères, compteurs, mentions. */
+  .etroit {
+    font-stretch: 74%;
+  }
+
+  /* Étiquette de plan : mono, crénelée large. */
+  .etiquette {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Hachures de plan = l'existant. Le poché (aplat) = le neuf. */
+  .motif-hachures {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      currentColor 0 1px,
+      transparent 1px 6px
+    );
+  }
+
+  .lien-souligne {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-plan);
+  }
+
+  .lien-souligne:hover,
+  .lien-souligne:focus-visible,
+  .group:hover .lien-souligne {
+    background-size: 100% 1px;
+  }
+}
+
+/* ——— Apparitions au défilement ——— */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-plan),
+    transform 0.9s var(--ease-plan);
+  transition-delay: var(--delai, 0ms);
+}
+
+[data-reveal].est-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sans JavaScript, le contenu reste lisible. */
+@media (scripting: none) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ——— Chorégraphie de chargement (héros + trame) ——— */
+
+@keyframes lever {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.leve {
+  animation: lever 0.9s var(--ease-plan) both;
+  animation-delay: var(--delai, 0ms);
+}
+
+@keyframes deployer {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.axe-anime {
+  transform-origin: top;
+  animation: deployer 1.2s var(--ease-plan) both;
+  animation-delay: var(--delai, 0ms);
+}
+
+@keyframes paraitre {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.parait {
+  animation: paraitre 1.1s ease both;
+  animation-delay: var(--delai, 0ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .leve,
+  .axe-anime,
+  .parait {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }
